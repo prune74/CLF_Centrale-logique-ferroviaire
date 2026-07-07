@@ -4,7 +4,7 @@
 #include <freertos/semphr.h>
 
 /*
- * Variables.h
+ * CLF_Variables.h
  *
  */
 
@@ -33,3 +33,14 @@ extern String g_lastLogMessage;
 
 extern CLF_CanService canService;
 extern CLF_WebHandler webHandler;
+
+/* ---------------------------------------------------------------------------
+ * Profil de voie (N / HO)
+ * --------------------------------------------------------------------------- */
+enum class TrackProfile : uint8_t
+{
+   N = 0, // 12V
+   HO = 1 // 15V
+};
+
+extern TrackProfile CLF_TRACK_PROFILE;

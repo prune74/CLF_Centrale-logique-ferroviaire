@@ -1,4 +1,4 @@
-#include "Variables.h"
+#include "CLF_Variables.h"
 
 #include "CLF_CanService.h"
 #include "CLF_WebHandler.h"
@@ -26,3 +26,8 @@ String g_lastLogMessage = "";
 
 CLF_CanService canService;
 CLF_WebHandler webHandler(&canService);
+
+/* ---------------------------------------------------------------------------
+ * Profil de voie (N / HO)
+ * --------------------------------------------------------------------------- */
+TrackProfile CLF_TRACK_PROFILE = TrackProfile::HO;

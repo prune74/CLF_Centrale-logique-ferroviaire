@@ -1,0 +1,25 @@
+{
+  "trackProfile": 1,
+  "trains": [
+    {
+      "trainID": 12,
+      "vitesseFinale": 34.8,
+      "essieuxFinal": 4,
+      "cv5": 172,
+      "silenceActif": false,
+      "silenceExpireAt": 0,
+      "timestampValidation": 98765432,
+      "cantonHistory": [3, 3, 4, 4, 2]
+    },
+    {
+      "trainID": 7,
+      "vitesseFinale": 36.2,
+      "essieuxFinal": 6,
+      "cv5": 188,
+      "silenceActif": false,
+      "silenceExpireAt": 0,
+      "timestampValidation": 98765999,
+      "cantonHistory": [1, 1, 1, 2, 2]
+    }
+  ]
+}

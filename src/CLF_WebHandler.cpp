@@ -6,7 +6,7 @@
 #include "CLF_Settings.h"
 #include "CLF_CanService.h"
 #include "CLF_Config.h"
-#include "Variables.h"
+#include "CLF_Variables.h"
 
 #include "Debug.h"
 
@@ -89,7 +89,7 @@ void CLF_WebHandler::pushStatus()
     JsonDocument doc;
 
     doc["wifi_on"] = CLF_Settings::WIFI_ON;
-    doc["can_ok"]  = _can->isCanOK();
+    doc["can_ok"] = _can->isCanOK();
     doc["last_rx"] = _can->lastRxAgeMs();
 
     String json;
@@ -118,7 +118,7 @@ void CLF_WebHandler::CLF_handleSimpleMessage(void *arg, uint8_t *data, size_t le
     }
 
     // Lecture de la commande
-    const char *cmd = doc["cmd"].as<const char*>();
+    const char *cmd = doc["cmd"].as<const char *>();
 
     // -----------------------------------------------------------------------
     // 🔥 Commande : PING
@@ -146,7 +146,7 @@ void CLF_WebHandler::CLF_handleSimpleMessage(void *arg, uint8_t *data, size_t le
         CLF_Settings::WIFI_ON = enable;
         CLF_Settings::writeFile();
 
-        JsonDocument reply;   // AJ7
+        JsonDocument reply; // AJ7
         reply["reply"] = enable ? "wifi_on" : "wifi_off";
 
         String out;
@@ -164,7 +164,7 @@ void CLF_WebHandler::CLF_handleSimpleMessage(void *arg, uint8_t *data, size_t le
     if (strcmp(cmd, "send_can") == 0)
     {
         uint32_t id = doc["id"].as<uint32_t>();
-        const char *payload = doc["data"].as<const char*>();
+        const char *payload = doc["data"].as<const char *>();
 
         CanMsg msg;
         msg.id = id;
@@ -192,7 +192,6 @@ void CLF_WebHandler::CLF_handleSimpleMessage(void *arg, uint8_t *data, size_t le
     // -----------------------------------------------------------------------
     LOG_WARN("CLF_WebHandler → commande inconnue : %s", cmd);
 }
-
 
 /* ---------------------------------------------------------------------------
  * 🌐 ROUTES HTTP

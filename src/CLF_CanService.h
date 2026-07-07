@@ -2,7 +2,7 @@
 
 #include "CanMsg.h"
 #include "CanBus.h"
-#include "Variables.h"
+#include "CLF_Variables.h"
 
 /*
  * CLF_CanService.h

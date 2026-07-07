@@ -108,7 +108,7 @@ enum class Cmd_Exploration_CC : uint16_t
 /* ============================================================================
  *  COMMANDES ERM → CC
  * ==========================================================================*/
-enum class Cmd_CLF_to_CC : uint16_t
+enum class Cmd_ERM_to_CC : uint16_t
 {
     TEST_BUS_REPLY = 0xB3,
     REQUEST_ID_REPLY = 0xB5,
@@ -136,6 +136,16 @@ enum class Cmd_CC_to_CLF : uint16_t
 {
     MESURE_VITESSE = 0xA0,
     ESSIEUX_TRAIN = 0xA1,
+};
+
+/* ============================================================================
+ * COMMANDES CLF → CC (Centrale de Logique Ferroviaire)
+ ============================================================================*/
+enum class Cmd_CLF_to_CC : uint16_t
+{
+    TRAIN_VALIDE = 0x90,
+    TRAIN_REARMER = 0x91,
+    DEMANDE_MESURE = 0x92,
 };
 
 /* ============================================================================
@@ -169,6 +179,18 @@ enum class Cmd_Global11 : uint16_t
     HEARTBEAT = 0x200,
     EMERGENCY_STOP = 0x201,
     CLEAR_STOP = 0x202,
+};
+
+/* ============================================================================
+ *  COMMANDES CAN LaBox (traction DCC NMRA)
+ * ==========================================================================*/
+enum class Cmd_CAN_LaBox : uint16_t
+{
+    SYSTEM_CONTROL = 0x00,    // Power ON/OFF, emergency stop global
+    LOCO_SPEED = 0x04,        // Vitesse loco
+    LOCO_DIRECTION = 0x05,    // Sens de marche
+    LOCO_FUNCTION = 0x06,     // Fonctions F0..F28
+    LOCO_WRITECV_MAIN = 0x08, // Écriture CV sur voie principale
 };
 
 /* ============================================================================
