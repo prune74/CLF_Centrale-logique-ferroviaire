@@ -1,0 +1,121 @@
+/* ============================================================================
+ * Style Discovery 2026 — Thème Foncé Industriel
+ * ========================================================================= */
+
+/* --- Base générale --- */
+body {
+    margin: 0;
+    padding: 0;
+    background: #1b1e22;          /* gris anthracite */
+    color: #e6e6e6;               /* texte clair */
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- Header --- */
+.header {
+    background: #111317;
+    color: #4da3ff;        
+    padding: 18px 25px;
+    font-size: 1.6em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #4da3ff;
+    text-align: center;
+}
+
+/* --- Sections --- */
+section {
+    margin: 25px;
+    padding: 20px;
+    background: #23272d;
+    border-radius: 8px;
+    border: 1px solid #2f343b;
+}
+
+/* --- Titres de section --- */
+section h3 {
+    margin-top: 0;
+    color: #4da3ff;
+    font-weight: 600;
+}
+
+/* --- Boutons --- */
+button {
+    background: #4da3ff;
+    color: #0d0f12;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+button:hover {
+    background: #6bb4ff;
+}
+
+button:active {
+    background: #3a8be0;
+}
+
+/* --- Inputs --- */
+input[type="text"],
+input[type="number"],
+select {
+    background: #2a2f36;
+    color: #e6e6e6;
+    border: 1px solid #3a4048;
+    padding: 8px 10px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+input[readonly] {
+    background: #1f2227;
+    color: #9fa3a8;
+}
+
+/* --- Tables --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th {
+    background: #2d3238;
+    color: #4da3ff;
+    padding: 10px;
+    text-align: left;
+}
+
+table td {
+    padding: 8px;
+    border-bottom: 1px solid #33383f;
+}
+
+/* --- Images --- */
+img.w3-image {
+    max-width: 120px;
+    border-radius: 6px;
+    border: 1px solid #3a4048;
+}
+
+/* --- Zone Raw Data / Logs --- */
+#rawData {
+    background: #111317;
+    color: #4da3ff;
+    font-family: monospace;
+    padding: 15px;
+    border-left: 4px solid #4da3ff;
+    white-space: pre-wrap;
+    border-radius: 6px;
+}
+
+/* --- Messages WebSocket --- */
+#messages {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #4da3ff;
+}
