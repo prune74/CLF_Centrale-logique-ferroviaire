@@ -1,7 +1,7 @@
 #include "CLF_TrainManager.h"
 #include "CLF_Config.h"
 #include "CLF_CAN.h"
-#include "Protocol.h"
+#include <Protocol.h>
 #include "CLF_Variables.h"
 #include "CLF_JsonStorage.h"
 

@@ -8,7 +8,7 @@
 
 #include "CLF_Variables.h"
 
-#include "Protocol.h"
+#include <Protocol.h>
 #include "CanBus.h"
 #include "Debug.h"
 
