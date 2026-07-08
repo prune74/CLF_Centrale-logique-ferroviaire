@@ -210,25 +210,44 @@ void CLF_TrainManager::checkValidation(uint16_t trainID)
 /* ------------------------------------------------------------
  * Silence CC
  * ------------------------------------------------------------ */
+#include "CLF_Time.h"
+
 void CLF_TrainManager::applySilence(uint16_t trainID)
 {
     TrainState *t = findOrCreate(trainID);
     if (!t)
         return;
 
-    t->silenceActif = true;
-    t->silenceExpireAt = millis() + (CLF_Variables::DUREE_SILENCE_MINUTES * 60000UL);
+    // 1) Heure actuelle CLF (epoch)
+    uint32_t now = CLF_Time::nowEpoch();
 
+    if (now == 0)
+    {
+        LOG_WARN("NTP non synchronisé → silence non appliqué");
+        return;
+    }
+
+    // 2) Calcul expiration (minutes → secondes)
+    uint32_t expirationEpoch =
+        now + (CLF_Variables::DUREE_SILENCE_MINUTES * 60);
+
+    // 3) Stockage interne CLF
+    t->silenceActif = true;
+    t->silenceExpireAt = expirationEpoch;
+
+    // 4) Envoi au CC : TRAIN_VALIDE(trainID, expirationEpoch)
     CLF_CAN::sendMsg(
         1,
         (uint8_t)Cmd_CLF_to_CC::TRAIN_VALIDE,
-        0,
+        0, // CC cible
         trainID,
-        CLF_Variables::DUREE_SILENCE_MINUTES & 0xFF,
-        (CLF_Variables::DUREE_SILENCE_MINUTES >> 8) & 0xFF);
+        (expirationEpoch >> 24) & 0xFF,
+        (expirationEpoch >> 16) & 0xFF,
+        (expirationEpoch >> 8) & 0xFF,
+        (expirationEpoch) & 0xFF);
 
-    LOG_INFO("Train %u → silence CC activé (%u ms)",
-             trainID, CLF_Variables::DUREE_SILENCE_MINUTES);
+    LOG_INFO("Train %u → silence CC activé jusqu'à epoch=%u",
+             trainID, expirationEpoch);
 }
 
 void CLF_TrainManager::checkSilenceExpiration()

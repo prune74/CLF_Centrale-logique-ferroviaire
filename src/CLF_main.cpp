@@ -56,6 +56,28 @@ void CLF_setup()
     LOG_INFO("Initialisation WiFi...");
     wifi.start();
 
+    LOG_INFO("Synchronisation NTP...");
+    configTime(0, 0, "pool.ntp.org", "time.nist.gov");
+
+    // Attendre la synchro NTP
+    time_t now = 0;
+    int retry = 0;
+    while (now < 1000000000 && retry < 20) // epoch < ~2001 → pas encore sync
+    {
+        vTaskDelay(pdMS_TO_TICKS(500));
+        time(&now);
+        retry++;
+    }
+
+    if (now < 1000000000)
+    {
+        LOG_WARN("⚠ NTP non synchronisé après 10 secondes");
+    }
+    else
+    {
+        LOG_INFO("NTP synchronisé → epoch = %u", (uint32_t)now);
+    }
+
     LOG_INFO("Initialisation WebHandler (port 80)...");
     webHandler.init(80);
 
