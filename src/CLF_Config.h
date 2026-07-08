@@ -34,7 +34,7 @@ namespace CLF_Variables
 
     // Durée pendant laquelle les CC doivent arrêter d'envoyer
     // les mesures vitesse/essieux après validation
-    static const uint32_t DUREE_SILENCE_MS = 30000; // 30 secondes
+    static const uint32_t DUREE_SILENCE_MINUTES = 300;
 
     /* ------------------------------------------------------------
      * PARAMÈTRES JSON

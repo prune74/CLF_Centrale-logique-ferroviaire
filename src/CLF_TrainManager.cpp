@@ -217,18 +217,18 @@ void CLF_TrainManager::applySilence(uint16_t trainID)
         return;
 
     t->silenceActif = true;
-    t->silenceExpireAt = millis() + CLF_Variables::DUREE_SILENCE_MS;
+    t->silenceExpireAt = millis() + (CLF_Variables::DUREE_SILENCE_MINUTES * 60000UL);
 
     CLF_CAN::sendMsg(
         1,
         (uint8_t)Cmd_CLF_to_CC::TRAIN_VALIDE,
         0,
         trainID,
-        CLF_Variables::DUREE_SILENCE_MS & 0xFF,
-        (CLF_Variables::DUREE_SILENCE_MS >> 8) & 0xFF);
+        CLF_Variables::DUREE_SILENCE_MINUTES & 0xFF,
+        (CLF_Variables::DUREE_SILENCE_MINUTES >> 8) & 0xFF);
 
     LOG_INFO("Train %u → silence CC activé (%u ms)",
-             trainID, CLF_Variables::DUREE_SILENCE_MS);
+             trainID, CLF_Variables::DUREE_SILENCE_MINUTES);
 }
 
 void CLF_TrainManager::checkSilenceExpiration()
@@ -321,4 +321,3 @@ void CLF_TrainManager::updateTrackProfile(uint8_t profile)
 
     CLF_JsonStorage::saveProfile(CLF_TRACK_PROFILE);
 }
-
